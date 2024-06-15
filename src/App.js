@@ -1,24 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+// import Home from './components/Home';
+import Stores from './components/Stores';
+import { initializeApp } from 'firebase/app';
+import { firebaseApp } from './firebase';
+import ExperienceDetail from './components/Stores/ExperienceDetail';
+import Login from './components/Login';
+import Register from './components/Register';
+import PrivateRoute from './components/PrivateRoute';
+import Header from './components/Header';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Header />
+      <Routes>
+      <Route
+        path="/"
+        element={
+          <PrivateRoute>
+            <Stores />
+          </PrivateRoute>
+        }
+        />
+        <Route
+        path="/experience/:id"
+        element={
+          <PrivateRoute>
+            <ExperienceDetail />
+          </PrivateRoute>
+        }
+        />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
+    </Router>
   );
 }
 
