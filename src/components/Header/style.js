@@ -1,6 +1,13 @@
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 
+export const ToolbarContainer = styled('div')(({theme}) => ({
+    padding: theme.spacing(2, 0),
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+}));
+
 export const Search = styled('div')(({ theme }) => ({
     position: 'relative',
     borderRadius: theme.shape.borderRadius,

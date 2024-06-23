@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { db } from '../../firebase';
+import { db, auth } from '../../firebase';
 import { collection, addDoc } from 'firebase/firestore';
 import { uploadImages } from '../../utils/uploadImages';
 import {
@@ -36,19 +36,30 @@ const ExperienceForm = () => {
     const onSubmit = async (data) => {
         setLoading(true);
         try {
+            const user = auth.currentUser; // Get the current user
+            if (!user) {
+                throw new Error('No authenticated user');
+            }
+
+            const merchantId = user.uid; // Use the current user's UID as the merchantId
+
             const experienceRef = await addDoc(collection(db, 'experiences'), {
                 ...data,
+                merchantId, // Add merchantId to the experience data
                 languages: selectedLanguages.join(', '),
             });
+
             if (images.length > 0) {
-                const imageUrls = await uploadImages(images, experienceRef.id, "experiences");
+                const imageUrls = await uploadImages(images, experienceRef.id);
                 const imagesCollection = collection(db, 'experiences', experienceRef.id, 'images');
                 for (const url of imageUrls) {
                     await addDoc(imagesCollection, { url });
                 }
             }
+
             reset();
             setImages([]);
+            setImagePreviews([]);
             setSelectedLanguages([]);
         } catch (error) {
             console.error('Error adding document: ', error);

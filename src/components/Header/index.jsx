@@ -1,9 +1,9 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography, Button, IconButton } from '@mui/material';
+import {AppBar, Typography, Button, IconButton, Container} from '@mui/material';
 import { Link } from 'react-router-dom';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { Search, SearchIconWrapper, StyledInputBase } from './style'; // Import styled components
+import {Search, SearchIconWrapper, StyledInputBase, ToolbarContainer} from './style'; // Import styled components
 import { useAuth } from '../../contexts/AuthContext'; // Import the authentication context
 
 const Header = () => {
@@ -11,7 +11,8 @@ const Header = () => {
 
   return (
       <AppBar position="static">
-        <Toolbar>
+        <Container>
+          <ToolbarContainer>
           <Typography variant="h6" component={Link} to="/" sx={{ flexGrow: 1, color: 'inherit', textDecoration: 'none' }}>
             MyBookingSite
           </Typography>
@@ -44,7 +45,8 @@ const Header = () => {
                 </Button>
               </>
           )}
-        </Toolbar>
+        </ToolbarContainer>
+        </Container>
       </AppBar>
   );
 };
