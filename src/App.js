@@ -1,68 +1,28 @@
-// src/App.js
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-// import Home from './components/Home';
-import Stores from './components/Stores';
-import { initializeApp } from 'firebase/app';
-import { firebaseApp } from './firebase';
-import ExperienceDetail from './components/Experiences/ExperienceDetail';
-import Login from './components/Login';
-import Register from './components/Register';
-import PrivateRoute from './components/PrivateRoute';
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import Profile from './components/Profile';
-import UserComments from './components/UserComments';
-import ExperienceForm from './components/Experiences/ExperienceForm';
-import UploadForm from './components/Merchants/UploadForm';
-import MerchantRegister from './components/MerchantRegister';
+import loadRoutes from './routes';
 
 function App() {
-  return (
-    <Router>
-      <Header />
-      <Routes>
-      <Route
-        path="/"
-        element={
-          <PrivateRoute>
-            <Stores />
-          </PrivateRoute>
-        }
-        />
-        <Route
-        path="/experience/:id"
-        element={
-          <PrivateRoute>
-            <ExperienceDetail />
-          </PrivateRoute>
-        }
-        />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-      <Route path="/experience-upload" element={<ExperienceForm />} />
-      <Route path="/merchant-register" element={<MerchantRegister />} />
-      <Route path="/merchant-upload" element={<UploadForm />} />
-      <Route
-          path="/profile"
-          element={
-              <PrivateRoute>
-                  <Profile />
-              </PrivateRoute>
-          }
-      />
-      <Route
-          path="/user-comments/:userId"
-          element={
-              <PrivateRoute>
-                  <UserComments />
-              </PrivateRoute>
-          }
-      />
-      </Routes>
-      <Footer />
-    </Router>
-  );
+    const [routes, setRoutes] = useState([]);
+
+    useEffect(() => {
+
+        loadRoutes().then(setRoutes);
+    }, []);
+
+    return (
+        <Router>
+            <Header/>
+            <Routes>
+                {routes.map((route, index) => (
+                    <Route key={index} path={route.path} element={route.element} />
+                ))}
+            </Routes>
+            <Footer/>
+        </Router>
+    );
 }
 
 export default App;

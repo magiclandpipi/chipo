@@ -1,0 +1,6 @@
+.description-title {
+    font-size: 1.5rem !important; /* Adjust the font size as needed */
+    font-weight: 600; /* Makes the title bold */
+    padding-top: 30px; /* Adds padding to the right */
+    font-family: 'Montserrat', sans-serif; /* Applies the Montserrat font */
+}

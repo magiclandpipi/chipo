@@ -17,6 +17,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import './ExperienceDetail.css';
+import Description from './Description';
 
 
 const ExperienceDetail = () => {
@@ -28,6 +29,7 @@ const ExperienceDetail = () => {
   const [currentImage, setCurrentImage] = useState(0);
 
   useEffect(() => {
+    console.log(id)
     const fetchExperience = async () => {
       const experienceRef = doc(db, 'experiences', id);
       const experienceSnap = await getDoc(experienceRef);
@@ -112,24 +114,9 @@ const ExperienceDetail = () => {
             </Box>
           </Modal>
         </Box>
-        <Typography variant="h4" gutterBottom>{experience.name}</Typography>
-        <Grid container spacing={2}>
-          <Grid item xs={12} md={6}>
-            <Typography variant="h6" gutterBottom>Description</Typography>
-            <Typography variant="body1" gutterBottom>{experience.description}</Typography>
-            <Typography variant="h6" gutterBottom>Details</Typography>
-            <Typography variant="body1" gutterBottom>{experience.beds} BEDS &bull; {experience.baths} BATHS</Typography>
-            <Typography variant="body1" gutterBottom>Price: ${experience.price} / wk</Typography>
-            <Box display="flex" alignItems="center" mt={2}>
-              <Rating readOnly value={experience.rating} size="large" />
-              <Typography variant="body2" color="textSecondary" ml={1}>
-                {experience.reviews} reviews
-              </Typography>
-              <ReviewList experienceId={id} />
-              <AddReview experienceId={id} />
-            </Box>
-          </Grid>
-        </Grid>
+        <Box mt={3}>
+          <Description experience = {experience} experienceId={id}/>
+        </Box>
       </Box>
     </Container>
   );

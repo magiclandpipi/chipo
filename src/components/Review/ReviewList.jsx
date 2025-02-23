@@ -9,6 +9,7 @@ const ReviewList = ({ experienceId }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    console.log(experienceId);
     const fetchReviews = async () => {
       const reviewsCollection = collection(db, 'experiences', experienceId, 'reviews');
       const reviewsSnapshot = await getDocs(reviewsCollection);

@@ -1,0 +1,69 @@
+.description-title {
+    font-size: 1.5rem !important; /* Adjust the font size as needed */
+    font-weight: 600; /* Makes the title bold */
+    padding-top: 30px; /* Adds padding to the right */
+    font-family: 'Montserrat', sans-serif; /* Applies the Montserrat font */
+}
+
+.photo-wall {
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr 2fr;;
+    grid-template-rows: repeat(2, 1fr);
+    gap: 10px;
+    max-height: 45vh; /* Adjust the height as needed */
+    overflow: hidden;
+    position: relative;
+}
+
+.photo-wall div {
+    position: relative;
+    overflow: hidden;
+    height: 100%; /* Ensures the div takes the full height */
+}
+
+.photo-wall img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the container */
+    cursor: pointer;
+}
+
+.photo-1 {
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 2;
+}
+
+.photo-2 {
+    grid-column: 2 / span 1;
+    grid-row: 1 / span 2;
+}
+
+.photo-3 {
+    grid-column: 3 / span 1;
+    grid-row: 1 / span 1;
+}
+
+.photo-4 {
+    grid-column: 4 / span 1;
+    grid-row: 1 / span 2;
+    position: relative;
+}
+
+.photo-5 {
+    grid-column: 3 / span 1;
+    grid-row: 2 / span 1;
+}
+
+div .show-all-button {
+    color:black;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.8);
+    z-index: 10; /* Ensure the button is above the images */
+}
+
+.modal-icon-button {
+    color: black;
+    z-index: 20;
+}

@@ -1,5 +1,6 @@
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
+import Button from '@mui/material/Button';
 
 export const ToolbarContainer = styled('div')(({theme}) => ({
     padding: theme.spacing(2, 0),
@@ -46,3 +47,7 @@ export const StyledInputBase = styled(InputBase)(({ theme }) => ({
         },
     },
 }));
+
+export const StyledMenuButton = styled(Button)({
+    textTransform: 'none', // Ensures the text stays in its original case
+});
