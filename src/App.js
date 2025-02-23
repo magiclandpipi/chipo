@@ -4,6 +4,8 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import loadRoutes from './routes';
 
+import './App.css'
+
 function App() {
     const [routes, setRoutes] = useState([]);
 
@@ -15,14 +17,16 @@ function App() {
     return (
         <Router>
             <Header/>
-            <Routes>
-                {routes.map((route, index) => (
-                    <Route key={index} path={route.path} element={route.element} />
-                ))}
-            </Routes>
+            <main>
+                <Routes>
+                    {routes.map((route, index) => (
+                        <Route key={index} path={route.path} element={route.element}/>
+                    ))}
+                </Routes>
+            </main>
             <Footer/>
         </Router>
-    );
+);
 }
 
 export default App;
