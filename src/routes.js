@@ -12,6 +12,7 @@ import MerchantRegister from './components/MerchantRegister';
 import dynamicRoutesPromise from './components/InfoContent/routes';
 import eventRoutesPromise from './components/Event/routes';
 import ContactPage from "./components/Contact";
+import AboutUs from "./components/AboutUs";
 
 const staticRoutes = [
     {
@@ -24,6 +25,7 @@ const staticRoutes = [
     },
     { path: '/experience/:id', element: (<ExperienceDetail />) },
     { path: '/login', element: <Login /> },
+    { path: '/about', element: <AboutUs /> },
     { path: '/register', element: <Register /> },
     { path: '/experience-upload', element: <ExperienceForm /> },
     { path: '/merchant-register', element: <MerchantRegister /> },
